@@ -2129,15 +2129,10 @@ public class OntologyProcessing {
         shift = 1;
 
         for (int i = 0; i < words.length; i++) {
-
             set_syn.add(words[i].replace(",", ""));
-            System.out.println(words[i]);
-            Set<String> x = wordNetEnrichment.findHyponmys(words[i]);
-            System.out.println(x);
-            lexicalUtilities.addIntoLabel2wordnetsyn(words[i], x);
-            //Synonym from wordnet: they are a bit noisy
-            if (lexicalUtilities.getLabel2wordnetsyn().containsKey(words[i])) {
+            lexicalUtilities.addIntoLabel2wordnetsyn(words[i], wordNetEnrichment.findHyponmys(words[i]));
 
+            if (lexicalUtilities.getLabel2wordnetsyn().containsKey(words[i])) {
                 set_syn.addAll(lexicalUtilities.getLabel2wordnetsyn().get(words[i]));
             }
 
@@ -2377,7 +2372,7 @@ public class OntologyProcessing {
      * Combines the words in given list with 'x' missing words and stores the results in IF
      *
      * @param cleanWords    Clean label of concept
-     * @param identifiers         Identifier of concepts
+     * @param identifiers   Identifier of concepts
      * @param missing_words Number of words to be discarded
      */
     private void createWeakLabels4Identifier(List<String> cleanWords, Set<Integer> identifiers, int missing_words) {
