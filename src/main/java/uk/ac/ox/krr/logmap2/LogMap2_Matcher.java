@@ -58,12 +58,8 @@ public class LogMap2_Matcher {
 		try {
 			logmap2 = new LogMap2Core(iri_onto1, iri_onto2, output_path, eval_impact);
 			createObjectMappings();
-			
 			//TODO save mappings
 			saveMappings(output_path);
-			
-			
-			
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
